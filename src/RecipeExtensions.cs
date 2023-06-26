@@ -1,5 +1,7 @@
 using Vintagestory.API.Common;
 
+namespace ToolsRequireRope;
+
 public static class RecipeExtensions
 {
     public static char FindAvailableLetter(this GridRecipe recipe)
