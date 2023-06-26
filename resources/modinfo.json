@@ -1,0 +1,9 @@
+{
+    "type": "code",
+    "side": "server",
+    "modid": "toolsrequirerope",
+    "name": "Tools Require Rope",
+    "description": "Every vanilla and modded tool now requires rope to craft",
+    "authors": ["Craluminum2413"],
+    "version": "1.0.0"
+}
