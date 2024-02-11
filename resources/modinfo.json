@@ -3,7 +3,10 @@
     "side": "server",
     "modid": "toolsrequirerope",
     "name": "Tools Require Rope",
-    "description": "Every vanilla and modded tool now requires rope to craft",
+    "description": "Every tool now requires rope to craft",
     "authors": ["Craluminum2413"],
-    "version": "1.0.0"
+    "version": "1.1.0",
+    "dependencies": {
+        "game": "1.19.0"
+    }
 }
