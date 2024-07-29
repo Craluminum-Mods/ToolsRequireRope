@@ -5,7 +5,7 @@
     "name": "Tools Require Rope",
     "description": "Every tool now requires rope to craft",
     "authors": ["Craluminum2413"],
-    "version": "1.2.0",
+    "version": "1.2.1",
     "dependencies": {
         "game": "1.19.0"
     }

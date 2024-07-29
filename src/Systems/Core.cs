@@ -20,13 +20,12 @@ public class Core : ModSystem
 
         foreach (GridRecipe recipe in api.World.GridRecipes)
         {
-            AssetLocation target = AssetLocation.Create(ConfigToolsRequireRope.DefaultBinding);
-
+            AssetLocation target = null;
             if (ConfigToolsRequireRope.Bindings.TryGetValue(recipe.Output.ResolvedItemstack.Collectible.Code.ToString(), out string binding))
             {
-                if (binding == null) continue;
-                target = AssetLocation.Create(binding);
+                target = binding == null ? null : AssetLocation.Create(binding);
             }
+            if (target == null) continue;
 
             if (recipe.IngredientPattern.Replace("_", "").Length >= 4 || recipe.Ingredients.Values.Any(ingred => ingred.Code == target))
             {
