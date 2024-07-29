@@ -31,11 +31,20 @@ public class ConfigToolsRequireRope : IModConfig
 
     private void FillDefault(ICoreAPI api)
     {
-        foreach (GridRecipe key in api.World.GridRecipes.Where(x => x.IsTool()).ToList())
+        foreach (GridRecipe key in api.World.GridRecipes.ToList())
         {
-            if (!Bindings.ContainsKey(key.Output.ResolvedItemstack.Collectible.Code.ToString()))
+            if (Bindings.ContainsKey(key.Output.ResolvedItemstack.Collectible.Code.ToString()))
+            {
+                continue;
+            }
+
+            if (key.IsTool())
             {
                 Bindings.Add(key.Output.ResolvedItemstack.Collectible.Code.ToString(), DefaultBinding);
+            }
+            else
+            {
+                Bindings.Add(key.Output.ResolvedItemstack.Collectible.Code.ToString(), null);
             }
         }
     }

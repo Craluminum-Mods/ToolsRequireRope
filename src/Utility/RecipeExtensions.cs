@@ -30,11 +30,6 @@ public static class RecipeExtensions
 
     public static bool IsTool(this GridRecipe recipe)
     {
-        return recipe.Output.ResolvedItemstack.Collectible.IsTool();
-    }
-
-    public static bool IsTool(this CollectibleObject obj)
-    {
-        return obj.Tool != null;
+        return recipe.Output.ResolvedItemstack.Collectible.Tool != null;
     }
 }

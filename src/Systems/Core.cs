@@ -16,20 +16,19 @@ public class Core : ModSystem
     public override void AssetsLoaded(ICoreAPI api)
     {
         ConfigToolsRequireRope = ModConfig.ReadConfig<ConfigToolsRequireRope>(api, "ToolsRequireRope.json");
+        if (ConfigToolsRequireRope == null) return;
 
         foreach (GridRecipe recipe in api.World.GridRecipes)
         {
-            AssetLocation target = new AssetLocation("rope");
+            AssetLocation target = AssetLocation.Create(ConfigToolsRequireRope.DefaultBinding);
 
-            if (ConfigToolsRequireRope != null)
+            if (ConfigToolsRequireRope.Bindings.TryGetValue(recipe.Output.ResolvedItemstack.Collectible.Code.ToString(), out string binding))
             {
-                if (ConfigToolsRequireRope.Bindings.TryGetValue(recipe.Output.ResolvedItemstack.Collectible.Code.ToString(), out string binding))
-                {
-                    target = new AssetLocation(binding);
-                }
+                if (binding == null) continue;
+                target = AssetLocation.Create(binding);
             }
 
-            if (recipe.IngredientPattern.Replace("_", "").Length >= 4 || !recipe.IsTool() || recipe.Ingredients.Values.Any(ingred => ingred.Code == target))
+            if (recipe.IngredientPattern.Replace("_", "").Length >= 4 || recipe.Ingredients.Values.Any(ingred => ingred.Code == target))
             {
                 continue;
             }
